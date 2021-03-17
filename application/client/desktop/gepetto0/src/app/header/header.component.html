@@ -1,0 +1,55 @@
+
+<nav class='navbar navbar-inverse' id='template-i090p'>
+    <div class='navbar-header' id='template-iyoc4'>
+      <span onclick='openNav()' id='in2oj'>☰</span>
+      <button class='navbar-toggle' type='button' data-toggle='collapse' data-target='#myNavbar' id='template-ioico'>
+        <span class='icon-bar' id='template-iy169'>
+        </span>
+        <span class='icon-bar' id='template-ivo7o'>
+        </span>
+        <span class='icon-bar' id='template-ihry1'>
+        </span>
+      </button>
+      <a class='navbar-brand' [routerLink]="['/home']" id='template-io1pk'>GEPPETTO</a>
+    </div>
+    <div class='collapse navbar-collapse' id='myNavbar'>
+      <ul class='nav navbar-nav navbar-right' id='template-ionqz'>
+        <li class='active' id='template-ivm2e'>
+          <a [routerLink]="['/']" id='template-iz682'>Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class='sidenav' id='mySidenav'>
+      <div class='closebtn' href='javascript:void(0)' onclick='closeNav()' id='template-if7ki'>×</div>
+      <div id='MainMenu'>
+		<div class="list-group panel"><a class="list-group-item list-group-item-success" *ngIf='userId!=null'  [routerLink]="['/home']">{{'source.home' | i18next}}</a></div><div class="list-group panel" *ngIf='isAdminUser'><a class="list-group-item list-group-item-success" [routerLink]="['/admin']">{{'source.admin' | i18next}}</a></div><div class="list-group panel"><a class="list-group-item list-group-item-success" *ngIf='userId!=null' (click)="logout()">{{'source.logout' | i18next}}</a></div>
+<li><a class="list-group-item list-group-item-success text" *ngIf='userId==null' [routerLink]="['/login']">{{'source.login' | i18next}}</a></li>
+<div class="list-group panel" *ngIf="isApplicable('authorization') && userId"><a class="list-group-item list-group-item-success" [routerLink]="['/authorization']">{{'source.authorization' | i18next}}</a></div>
+<div class="list-group panel" *ngIf="isApplicable('manageroles') && userId"><a class="list-group-item list-group-item-success" [routerLink]="['/manageroles']">{{'source.manageroles' | i18next}}</a></div>
+<div class="list-group panel" *ngIf="isApplicable('manageusers') && userId">
+                                            <a class="list-group-item list-group-item-success" [routerLink]="['/manageusers']">{{'source.manageusers' | i18next}}</a>
+                                            </div>
+<li>
+    <a href="#translator" data-toggle="collapse" aria-expanded="false" class="list-group-item list-group-item-success dropdown-toggle text"> {{'source.selectLanguage' | i18next }} </a>
+    <ul class="collapse list-unstyled" id="translator">
+        <li>
+            <a class="list-group-item text" *ngFor="let lang of languages" (click)='confirmLangModel(lang)'> {{'languages.' + lang | i18nextCap }}</a>
+        </li>
+    </ul>
+</li>
+      </div>
+    </div>
+  </nav>
+  <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'top': '100px','display': confirmLangChangeModal}">
+    <div class="modal-dialog modal-sm" role="dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <p>language change cause you to re-login</p>
+        </div>
+        <div class="modal-footer" style="padding: 5px">
+          <button type="button" (click)="confirmLangChange()" class="btn btn-default">Confirm</button>
+          <button type="button" (click)="onCloseHandled()" class="btn btn-default">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
